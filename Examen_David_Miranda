@@ -1,0 +1,111 @@
+entradas_compradas=[False]
+asistentes={}
+entradas=0
+
+precio=0
+categoria=" "
+asiento=0
+
+
+
+#comprar entradas
+
+def comprar_entradas():
+    entradas= int(input("por favor ingrese la cantidad de entradas que quiere comprar: "))
+    while entradas < 1 or entradas > 3:
+        print("opcion invalida, por favor ingrese de nuevo una opcion para continuar")
+        entradas= int(input("por favor ingrese la cantidad de entradas que quiere comprar: "))
+  
+    print("las ubicaciones que se encuentran disponibles son del 0 al 100 por ahora:")
+    for i in range(entradas):
+      if entradas_compradas[False]:
+          print("x", end=" ")
+      else:
+          print(i, end=" ")
+
+      
+
+    for i in range(entradas):
+      asiento=int(input("seleccione un asiento disponible para continuar: "))
+    while entradas_compradas[False]:
+      print("asiento no disponible, ingrese de nuevo por favor")
+      asiento=int(input("seleccione un asiento disponible para continuar: "))
+
+    if asiento >=1 and asiento <=20: 
+        precio = 120000
+        categoria="platinum"
+      
+    elif asiento >=21 and asiento<=50:
+        precio=80000
+        categoria="gold"
+
+    else:
+        precio=50000
+        categoria="silver"
+
+
+def rut():
+  rut= input("porfavor ingrese el rut sin guion y punto, ejemplo: 111111111: ")
+  asistentes[rut]={"asiento": asiento, "precio": precio, "categoria":categoria}
+  print("la compra se a realizado con exito")
+  return
+
+  #mostrar ubicaciones disponibles
+
+def mostrar_ubicaciones_disponibles():
+    print("los asientos disponibles son")
+    for i in range(1,100):
+      if entradas_compradas[False]:
+        print("x", end=" ")
+      else:
+        print(i, end=" ")
+
+     
+
+#ver listado de asistentes
+def ver_listado_asistentes():
+  print("la lista de los asistentes por rut es: ")
+  asistentes={rut}
+  print(asistentes)
+  print()
+  print()
+
+
+  #ganancias totales
+def ganancias_totales():
+    total=sum(asistentes[rut]["precio"] for run in asistentes)
+    print("las ganancias totales es de: ",total)
+
+def menu():
+  while True:
+    print("bienvenido a la compras de entradas")
+    print("1.   comprar entradas")
+    print("2.   mostrar ubicaciones disponibles")
+    print("3.   ver listado de asistentes")
+    print("4.   mostrar ganancias totales") 
+    print("5.   salir")
+
+    sal=int(input("porfavor ingrese una opcion para continuar: "))
+
+
+    if sal == 1:
+      comprar_entradas()
+      rut()
+
+    elif sal == 2:
+      mostrar_ubicaciones_disponibles()
+
+    elif sal ==3:
+      ver_listado_asistentes()
+
+    elif sal ==4:
+      ganancias_totales()
+    
+    elif sal ==5:
+      print("gracias, vuelva pronto")
+      print("espero salvarme, salvame!!!!")
+      break
+
+
+
+menu()
